@@ -1,0 +1,11 @@
+
+.parent{
+    display: flex;
+    justify-content: space-between;
+
+}
+.parent div:last-child{
+    margin-left: auto;
+}
+
+
