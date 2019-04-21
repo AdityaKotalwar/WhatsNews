@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/AdityaKotalwar/WhatsNews#readme",
   "dependencies": {
+    "jquery": "^3.4.0",
     "mongoose": "^5.5.2"
   }
 }
