@@ -2,7 +2,7 @@
   "name": "WhatsNews",
   "version": "1.0.0",
   "description": "Hello World",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,6 +18,12 @@
   },
   "homepage": "https://github.com/AdityaKotalwar/WhatsNews#readme",
   "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "javascript": "^1.0.0",
+    "jquery": "^3.4.0",
+    "js": "^0.1.0",
+    "mongodb": "^3.2.3",
     "mongoose": "^5.5.2"
   }
 }
