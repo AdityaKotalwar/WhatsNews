@@ -18,16 +18,7 @@
   },
   "homepage": "https://github.com/AdityaKotalwar/WhatsNews#readme",
   "dependencies": {
-<<<<<<< HEAD
-    "body-parser": "^1.18.3",
-    "express": "^4.16.4",
-    "javascript": "^1.0.0",
     "jquery": "^3.4.0",
-    "js": "^0.1.0",
-    "mongodb": "^3.2.3",
-=======
-    "jquery": "^3.4.0",
->>>>>>> f1728011df713568ef763a41bb33ba6dbad2fbd9
     "mongoose": "^5.5.2"
   }
 }
