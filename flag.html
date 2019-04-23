@@ -10,7 +10,8 @@
 
     <title>List</title>
   </head>
-  <body>
+  <body style="background-color:white;">
+    
     <h5>Suck my ass!</h5>
     <!-- <form>
       <div class="input-field">
@@ -76,19 +77,26 @@
                  <div class="col l6 m6 s12" style="background-color:#76a6f2; background-image:url(${latestNews[i].urlToImage}); 
                   background-attachment:scroll; background-size:cover; background-position:cover; 
                  background-repeat:no-repeat; height:500px;
-                 width:100%; color:white;" id="thisDiv">
-                 <h4 style="text-align:center">
-                  ${latestNews[i].title}</h4>
+                 width:100%; color:white; font-weight:bold; margin-bottom:20px" id="thisDiv">
+                 <div class="col l6 m6 s12" style="background:rgba(0,0,0,0.5); height:500px; width:100%;">
+                  <br>
+                 <h3 style="text-align:center">
+                  <a href="${latestNews[i].url}" style="color:white">
+                  ${latestNews[i].title}</h3>
+                </a>
                   <br>
                   <br>
                   <br><br>
                 
                 
                   <br>
-                 <p>${latestNews[i].description}</p>
+                  <div class="col l6 m6 s12" style="width:50%; margin:auto;">
+                 <p style>${latestNews[i].description}</p>
                  <p>${latestNews[i].content}</p>
                  <p>Published on: ${latestNews[i].publishedAt}</p>
-                 <a href="${latestNews[i].url}" class="btn">Read more</a>
+                 
+                 </div>
+                 </div>
                  </div>
                  `;
              }
