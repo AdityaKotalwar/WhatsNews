@@ -16,3 +16,7 @@ function func(){
 	}
 
  }
+ function openlink(){
+
+    window.open("https://stackoverflow.com/questions/16131988/making-an-image-act-like-a-button");
+ }

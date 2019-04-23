@@ -2,10 +2,10 @@
 var country_arr = new Array("Afghanistan", "Albania", "Algeria", "American Samoa", "Angola", "Anguilla", "Antartica", 
 "Antigua and Barbuda", "Argentina", "Armenia", "Aruba", "Ashmore and Cartier Island", "Australia", "Austria", "Azerbaijan", 
 "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", 
-"Bosnia and Herzegovina", "Botswana", "Brazil", "British Virgin Islands", "Brunei", "Bulgaria", "Burkina Faso", "Burma", 
+"Bosnia and Herzegovina", "Botswana", "Brazil", "British Virgin Islands", "Brunei", "Bulgaria", "Burkina Faso", "Myanmar", 
 "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central African Republic", "Chad", "Chile", 
-"China", "Christmas Island", "Clipperton Island", "Cocos (Keeling) Islands", "Colombia", "Comoros", "Congo, Democratic Republic of the", 
-"Congo, Republic of the", "Cook Islands", "Costa Rica", "Cote d'Ivoire", "Croatia", "Cuba", "Cyprus", "Czeck Republic", "Denmark", 
+"China", "Christmas Island", "Clipperton Island", "Cocos (Keeling) Islands", "Colombia", "Comoros", "Democratic Republic of the Congo", 
+"Republic of the Congo", "Cook Islands", "Costa Rica", "Cote d'Ivoire", "Croatia", "Cuba", "Cyprus", "Czeck Republic", "Denmark", 
 "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", 
 "Europa Island", "Falkland Islands (Islas Malvinas)", "Faroe Islands", "Fiji", "Finland", "France", "French Guiana", "French Polynesia", 
 "French Southern and Antarctic Lands", "Gabon", "Gambia, The", "Gaza Strip", "Georgia", "Germany", "Ghana", "Gibraltar", 
@@ -26,19 +26,32 @@ var country_arr = new Array("Afghanistan", "Albania", "Algeria", "American Samoa
 "Sri Lanka", "Sudan", "Suriname", "Svalbard", "Swaziland", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", 
 "Thailand", "Tobago", "Toga", "Tokelau", "Tonga", "Trinidad", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine", 
 "United Arab Emirates", "United Kingdom", "Uruguay", "USA", "Uzbekistan", "Vanuatu", "Venezuela", "Vietnam", "Virgin Islands", "Wales",
- "Wallis and Futuna", "West Bank", "Western Sahara", "Yemen", "Yugoslavia", "Zambia", "Zimbabwe");
+ "Wallis and Futuna", "West Bank", "Western Sahara", "Yemen", "Zambia", "Zimbabwe");
 
 
  
 	  for(var i in country_arr){
+		//document.write("<p>");
+		document.write("<li>");
+		document.write("<div style=\"padding-bottom:25px;\" class=\"lippy\">");
+		document.write("<a href=\"https://www.google.com/\">");
+		
+		document.write("<h2>");
+		var country = country_arr[i].toLowerCase();
+		document.write("<img src=\"png/");
+		document.write(country);
+		document.write(".png\" height=\"50\" width=\"50\">");
+		document.write("\t\t\t");
+		
+		document.write(country_arr[i]);
+		document.write("</h2>");
+		document.write("</a>");
+		document.write("</div>");
+		document.write("</li>");
+		
+		//document.write("</p>");
 	
-	document.write("<li>");
-    document.write("<a href=\"https://www.google.com/\">");
-	document.write("<h1>");
-	document.write(country_arr[i]);
-	document.write("</h1>");
-    document.write("</a>");
-    document.write("</li>");
+	
 
  }
 
