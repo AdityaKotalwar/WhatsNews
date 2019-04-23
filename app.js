@@ -9,6 +9,7 @@ const app = express();
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb+srv://whatsnews:alishamc@cluster0-ndzcp.mongodb.net/test?retryWrites=true";
 
+//app.use(express.static(__dirname + '/static'));
 app.use(express.static(path.join('css', 'public')));
 app.use(bodyParser.json());
 
@@ -21,6 +22,10 @@ app.get('/',(req,res)=>{
 app.get('/main', (req, res)=>{
     console.log("GETergergerge");
     res.sendFile(path.join(__dirname,'main.html'));
+})
+app.get('/flag', (req, res)=>{
+    console.log("GETergergerge");
+    res.sendFile(path.join(__dirname,'flag.html'));
 })
 
 // app.get('/auth',(req,res)=>{
