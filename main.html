@@ -92,15 +92,19 @@ var country_arr = new Array("Afghanistan", "Albania", "Algeria", "American Samoa
 		document.write("<li>");
     document.write("<div style=\"padding-bottom:25px;\" class=\"lippy\">");
       var country = country_arr[i].toLowerCase();
-    document.write("<a href=\"http://localhost:3090/flag\"");
-    document.write(" class=\"");
-    document.write(country);
-    document.write("\">");
+      //localStorage.setItem(country, country);
+      var link = "<a href=\"http://localhost:3090/flag\"" + "id=\"" + country +"\" class=\"countryName\">";
+    //document.write("<a href=\"http://localhost:3090/flag\"");
+    //document.write(" class=\"");
     //document.write(country);
+    //document.write("\">");
+    //document.write(country);
+    document.write(link);
     //var anotha = document.getElementsByClassName(country).value;
     //document.write(anotha);
+    var h2 = "<h2>";
 		
-		document.write("<h2>");
+		document.write(h2);
 		//var country = country_arr[i].toLowerCase();
 		//document.write("<img src=\"png/");
 		//document.write(country);
@@ -110,7 +114,9 @@ var country_arr = new Array("Afghanistan", "Albania", "Algeria", "American Samoa
 		document.write(country_arr[i]);
 		document.write("</h2>");
 		document.write("</a>");
-		document.write("</div>");
+    document.write("</div>");
+    //var anotha = document.getElementById(country).value;
+    //document.write(anotha);
 		document.write("</li>");
 		
 		//document.write("</p>");
@@ -118,9 +124,20 @@ var country_arr = new Array("Afghanistan", "Albania", "Algeria", "American Samoa
 	
 
  }
+ 
 
 
 
+          </script>
+          <script>
+          test=function(e){
+              localStorage.setItem("country", $(this).attr('id'));
+              //alert(localStorage.getItem("country"));
+              window.open("http://localhost:3090/flag", "_self");
+              return false;
+
+          }
+          $('.countryName').click(test);
           </script>
 
     </ul>
