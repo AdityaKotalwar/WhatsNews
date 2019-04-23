@@ -34,7 +34,7 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    <script src="newsapi.js"></script>
+    <!-- <script src="newsapi.js"></script> -->
   </body>
 </html>
 
@@ -45,8 +45,7 @@
         let query = $("#searchquery").val();
         let url = "https://newsapi.org/v2/top-headlines?q="+localStorage.getItem("country")+"&apiKey=9ed6fe87d43649958f8fd87d2135c331";
     //        let url = "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=9ed6fe87d43649958f8fd87d2135c331";
-     //      let url = "https://newsapi.org/v2/top-headlines?country=in&apiKey=9ed6fe87d43649958f8fd87d2135c331";
-        //  document.getElementById("demo").innerHTML = query;
+    
 
 
 
@@ -56,8 +55,8 @@
         //            width:50%;">
 
 
-
-      console.log(url);
+        console.log("apples");
+        console.log(localStorage.getItem("country"));
 
         if(query !== ""){
             $.ajax({
@@ -65,26 +64,38 @@
                 method: "GET",
                 dataType: "json",
             success: function(news){
-             //   console.log(news);
              let output = "";
              let latestNews = news.articles;
-
+             let Oldtitle = "";
+             let title = "";
+             let Oldesc = ""
+             let desc = "";
+             let cont = "";
+             let urlNews = "";
 
              for(var i in latestNews){
-               
-                 output += `
+                Oldtitle= latestNews[i].title;
+                title = Oldtitle.replace("'","");
+               // title.replace("'","");
+                Oldesc = latestNews[i].description;
+                desc = Oldesc.replace("'","");
+               // desc.replace("'","");
+                cont = latestNews[i].content;
+                urlNews = latestNews[i].url;
+                output += `
                  <div class="col l6 m6 s12" style="background-color:#76a6f2; background-image:url(${latestNews[i].urlToImage}); 
                   background-attachment:scroll; background-size:cover; background-position:cover; 
                  background-repeat:no-repeat; height:500px;
                  width:100%; color:white;" id="thisDiv">
                  <h4 style="text-align:center">
                   ${latestNews[i].title}</h4>
+                  <div style:"float:right;">
+                  <input type="reset" id="savebtn" onclick = "news(\'${title}\',\'${desc}\',\'${urlNews}\')" class="btn btn-sm" value="save">
+                  </div>
                   <br>
                   <br>
                   <br><br>
-                
-                
-                  <br>
+                  <br>s
                  <p>${latestNews[i].description}</p>
                  <p>${latestNews[i].content}</p>
                  <p>Published on: ${latestNews[i].publishedAt}</p>
@@ -104,6 +115,27 @@
             });
         }else{
             console.log("Enter something");
+        }
+        
+        function news(a,b,c) {
+            console.log("Save button pressed");
+            var title = a
+            console.log(title+" apple");
+            var description = b
+             console.log(description+" hi felicia");
+            // // var description = b;
+            var urlN = c;
+               console.log(urlN+"bye felicia");
+         //   var email = localStorage.getItem("emailID");
+         //   console.log(email + "EMAILLL");
+            fetch('/flag',{
+					method : 'POST',
+					body : JSON.stringify({title : title, description : description, url : urlN}),
+					headers : {
+						"Content-Type" : "application/json; charset=utf-8"
+					}
+						
+				});
         }
    //});
 //});

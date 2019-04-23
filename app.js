@@ -15,16 +15,15 @@ app.use(bodyParser.json());
 
 app.get('/',(req,res)=>{
     console.log("GET");
-    res.sendFile(path.join(__dirname,'signin.html'));
+    res.sendFile(path.join(__dirname,'signup.html'));
     
 });
-
 app.get('/main', (req, res)=>{
     console.log("GETergergerge");
     res.sendFile(path.join(__dirname,'main.html'));
 })
 app.get('/flag', (req, res)=>{
-    console.log("GETergergerge");
+    console.log("FLAG");
     res.sendFile(path.join(__dirname,'flag.html'));
 })
 
@@ -70,6 +69,23 @@ app.post('/signup', function(req,res, next){
       console.log("yassasasasasa")
 });
 
+app.post('/flag', function(req, res, next){
+    // Document to be inserted
+    console.log("SAVE");
+    const newsArticle = req.body;
+    MongoClient.connect(url, { useNewUrlParser: true}, function(err, db) {
+        if (err) throw err;
+        var dbo = db.db("mydb");
+        dbo.collection("news").insertOne(newsArticle, function(err, res1) {
+            if (err) throw err;
+            console.log("1 news article inserted");
+            // res.sendFile(path.join(__dirname,'main.html'));
+            db.close();
+        });
+      });
+      console.log("yassasasasasa")
+});
+
 app.post('/signin', function(req, res, next){
     // Document to be inserted
 
@@ -77,7 +93,7 @@ app.post('/signin', function(req, res, next){
     MongoClient.connect(url, { useNewUrlParser: true}, function(err, db) {
         if (err) throw err;
         var dbo = db.db("mydb");
-
+     //   localStorage.setItem("emailId",userInput.email);
         var document = dbo.collection("users").findOne({email : userInput.email, password : userInput.password}, function(err,resi){
             if(resi){
                 console.log(resi);
@@ -106,8 +122,8 @@ db.connect((err)=>{
     // Start up our Express Application
     // And listen for Request
     else{
-        app.listen(3090,()=>{
-            console.log('connected to database, app listening on port 3090');
+        app.listen(7800,()=>{
+            console.log('connected to database, app listening on port 7800');
         });
     }
 });
