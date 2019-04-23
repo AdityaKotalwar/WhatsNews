@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <title>List</title>
+  </head>
+  <body>
+    <h5>Suck my ass!</h5>
+    <!-- <form>
+      <div class="input-field">
+          <i class="material-icons prefix">public</i> 
+          <input type="text" id="searchquery">
+          <label>Latest news</label>
+      </div>
+      <div class="row">
+        <input type="reset" id="searchbtn" class="btn col m2 s12" value="search">
+        <input type="reset" id="searchbtn" class="btn col m2 s12 red right" value="clear"  style="margin-top:3px;"> 
+      </div>
+    <form> -->
+          <div class="row" id = "row">
+            <div id="newsResults" class="newsResults" style="padding:20px;"><p id="newsResults"></p></div>
+            </div>
+         
+  
+  </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <!-- <script src="newsapi.js"></script> -->
+  </body>
+</html>
+
+<script>
+//$(document).ready(function(){
+    // $("#searchbtn").on("click",function(e){
+    //     e.preventDefault //makes sure button is not clickable if nothing is pressed 
+        let query = $("#searchquery").val();
+        let url = "https://newsapi.org/v2/top-headlines?q="+localStorage.getItem("country")+"&apiKey=9ed6fe87d43649958f8fd87d2135c331";
+    //        let url = "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=9ed6fe87d43649958f8fd87d2135c331";
+    
+
+
+
+
+        // This code was inside the query
+        // <img src="${latestNews[i].urlToImage}" class="responsive-img" style="display:block; margin-right:auto; margin-left:auto;
+        //            width:50%;">
+
+
+        console.log("apples");
+        console.log(localStorage.getItem("country"));
+
+        if(query !== ""){
+            $.ajax({
+                url: url,
+                method: "GET",
+                dataType: "json",
+            success: function(news){
+             let output = "";
+             let latestNews = news.articles;
+             let Oldtitle = "";
+             let title = "";
+             let Oldesc = ""
+             let desc = "";
+             let cont = "";
+             let urlNews = "";
+
+             for(var i in latestNews){
+                Oldtitle= latestNews[i].title;
+                title = Oldtitle.replace("'","");
+               // title.replace("'","");
+                Oldesc = latestNews[i].description;
+                desc = Oldesc.replace("'","");
+               // desc.replace("'","");
+                cont = latestNews[i].content;
+                urlNews = latestNews[i].url;
+                output += `
+                 <div class="col l6 m6 s12" style="background-color:#76a6f2; background-image:url(${latestNews[i].urlToImage}); 
+                  background-attachment:scroll; background-size:cover; background-position:cover; 
+                 background-repeat:no-repeat; height:500px;
+                 width:100%; color:white;" id="thisDiv">
+                 <h4 style="text-align:center">
+                  ${latestNews[i].title}</h4>
+                  <div style:"float:right;">
+                  <input type="reset" id="savebtn" onclick = "news(\'${title}\',\'${desc}\',\'${urlNews}\')" class="btn btn-sm" value="save">
+                  </div>
+                  <br>
+                  <br>
+                  <br><br>
+                  <br>s
+                 <p>${latestNews[i].description}</p>
+                 <p>${latestNews[i].content}</p>
+                 <p>Published on: ${latestNews[i].publishedAt}</p>
+                 <a href="${latestNews[i].url}" class="btn">Read more</a>
+                 </div>
+                 `;
+             }
+                if(output !== ""){
+                    $("#newsResults").html(output);
+                }else{ 
+                  $("#newsResults").html("There is no news");
+                }
+            },
+            error: function(){
+                console.log("error, cannot make api call");
+            }
+            });
+        }else{
+            console.log("Enter something");
+        }
+        
+        function news(a,b,c) {
+            console.log("Save button pressed");
+            var title = a
+            console.log(title+" apple");
+            var description = b
+             console.log(description+" hi felicia");
+            // // var description = b;
+            var urlN = c;
+               console.log(urlN+"bye felicia");
+         //   var email = localStorage.getItem("emailID");
+         //   console.log(email + "EMAILLL");
+            fetch('/flag',{
+					method : 'POST',
+					body : JSON.stringify({title : title, description : description, url : urlN}),
+					headers : {
+						"Content-Type" : "application/json; charset=utf-8"
+					}
+						
+				});
+        }
+   //});
+//});
+
+</script>

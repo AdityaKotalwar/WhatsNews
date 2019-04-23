@@ -18,7 +18,10 @@
   },
   "homepage": "https://github.com/AdityaKotalwar/WhatsNews#readme",
   "dependencies": {
+
     "jquery": "^3.4.0",
-    "mongoose": "^5.5.2"
+    "mongoose": "^5.5.2",
+    "svg-country-flags": "^1.2.6"
+
   }
 }

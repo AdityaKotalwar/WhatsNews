@@ -2,8 +2,10 @@ $(document).ready(function(){
     $("#searchbtn").on("click",function(e){
         e.preventDefault //makes sure button is not clickable if nothing is pressed 
         let query = $("#searchquery").val();
-        let url = "https://newsapi.org/v2/top-headlines?q="+query+"&country=us&category=business&apiKey=9ed6fe87d43649958f8fd87d2135c331";
-      //  document.getElementById("demo").innerHTML = query;
+        let url = "https://newsapi.org/v2/top-headlines?q="+query+"&apiKey=9ed6fe87d43649958f8fd87d2135c331";
+    //        let url = "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=9ed6fe87d43649958f8fd87d2135c331";
+     //      let url = "https://newsapi.org/v2/top-headlines?country=in&apiKey=9ed6fe87d43649958f8fd87d2135c331";
+        //  document.getElementById("demo").innerHTML = query;
       console.log(url);
 
         if(query !== ""){
@@ -20,7 +22,7 @@ $(document).ready(function(){
                  output += `
                  <div class="col l6 m6 s12">
                  <h4>${latestNews[i].title}</h4>
-                 <img src="${latestNews[i].urlToImage}" class="responsive-img">
+                 <img src="${latestNews[i].urlToImage}" class="responsive-img" >
                  <p>${latestNews[i].description}</p>
                  <p>${latestNews[i].content}</p>
                  <p>Published on: ${latestNews[i].publishedAt}</p>
@@ -30,8 +32,8 @@ $(document).ready(function(){
              }
                 if(output !== ""){
                     $("#newsResults").html(output);
-                }else{
-                    $("#newsResults").html("There is no news");
+                }else{ 
+                  $("#newsResults").html("There is no news");
                 }
             },
             error: function(){

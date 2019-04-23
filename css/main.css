@@ -1,0 +1,38 @@
+
+.parent{
+    display: flex;
+    justify-content: space-between;
+
+}
+.parent div:last-child{
+    margin-left: auto;
+}
+
+a:hover{
+
+    color:hotpink;
+    text-decoration: none;
+    
+}
+.col-auto{
+    cursor: pointer;
+}
+
+ul.listy{
+    
+    /* display: flex; */
+    margin:0;
+    
+}
+ul.listy li {
+    
+    display: inline;
+
+ 
+}
+
+a:link{
+    
+}
+
+
