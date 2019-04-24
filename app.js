@@ -20,9 +20,9 @@ var url = "mongodb+srv://whatsnews:alishamc@cluster0-ndzcp.mongodb.net/test?retr
 app.use(express.static(path.join('css', 'public')));
 app.use(bodyParser.json());
 
-app.get('/',(req,res)=>{
+app.get('/', function(req,res){
     console.log("GET");
-    res.sendFile(path.join(__dirname,'signup.html'));
+    res.sendFile(path.join(__dirname,'signin.html'));
     
 });
 app.get('/main', (req, res)=>{
@@ -86,6 +86,17 @@ app.get('/flag', (req, res)=>{
 //         });
 //       });
 // });
+app.get('/signup', (req, res)=>{
+    console.log("GETsignup");
+    res.sendFile(path.join(__dirname,'signup.html'));
+});
+
+app.get('/main', function(req, res){
+    console.log("GETergergerge");
+    res.sendFile(path.join(__dirname,'main.html'));
+    console.log("GETergergerge");
+    //res.sendFile(path.join(__dirname,'main.html'));
+});
 
 app.post('/signup', function(req,res, next){
     // Document to be inserted
@@ -102,15 +113,21 @@ app.post('/signup', function(req,res, next){
                 dbo.collection("users").insertOne(userInput, function(err, res1) {
                     if (err) throw err;
                     console.log("1 document inserted");
-                    // res.sendFile(path.join(__dirname,'main.html'));
+                    //return res.sendFile(path.join(__dirname,'/main'));
+                    res.redirect('localhost:7098/main');
                     db.close();
                 });
             }
         });
         
       });
-      console.log("yassasasasasa")
 });
+
+app.get('/signin', function(req, res, next){
+    console.log("GETsignin")
+    res.sendFile(path.join(__dirname,'signin.html'));
+})
+    
 
 app.post('/flag', function(req, res, next){
     // Document to be inserted
@@ -131,7 +148,7 @@ app.post('/flag', function(req, res, next){
 
 app.post('/signin', function(req, res, next){
     // Document to be inserted
-
+    console.log("POSTsignin");
     const userInput = req.body;
     MongoClient.connect(url, { useNewUrlParser: true}, function(err, db) {
         if (err) throw err;
@@ -140,19 +157,16 @@ app.post('/signin', function(req, res, next){
         var document = dbo.collection("users").findOne({email : userInput.email, password : userInput.password}, function(err,resi){
             if(resi){
                 console.log(resi);
-                res.sendFile(path.join(__dirname,'main.html'));
-                // dbo.collection("users").insertOne(userInput, function(err, res1) {
-                //     if (err) throw err;
-                //     console.log("1 document inserted");
-                //     // res.sendFile(path.join(__dirname,'main.html'));
-                //     db.close();
-                // });
+                return res.redirect('/main');
+                // return res.sendFile(path.join(__dirname,'/main'));
+                //    return res.redirect('/main'); 
             }
+            
         });
-        
-      });
-      console.log("yassasasasasa")
+    });
+    
 });
+        
 
 db.connect((err)=>{
     // If err unable to connect to database
