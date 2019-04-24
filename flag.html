@@ -11,7 +11,13 @@
     <title>List</title>
   </head>
   <body>
-    <h5>Suck my ass!</h5>
+
+    <div style="position:fixed; z-index:100; width:50px; left:95%; padding-top:1%;">
+        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+width="50" height="50"
+viewBox="0 0 192 192"
+style=" fill:#000000;"><g transform="translate(0.48,0.48) scale(0.995,0.995)"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="none" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g fill="#3498db" stroke="#ffffff" stroke-linejoin="round"><g id="surface1 1"><path d="M184.32,96c0,48.705 -39.615,88.32 -88.32,88.32c-48.705,0 -88.32,-39.615 -88.32,-88.32c0,-48.705 39.615,-88.32 88.32,-88.32c48.705,0 88.32,39.615 88.32,88.32zM145.92,96c0,-2.115 -1.71,-3.84 -3.84,-3.84h-82.89l24.165,-24.165c1.5,-1.5 1.5,-3.93 0,-5.43c-1.5,-1.5 -3.93,-1.5 -5.43,0l-30.72,30.72c-0.36,0.36 -0.63,0.78 -0.825,1.245c-0.39,0.945 -0.39,1.995 0,2.94c0.195,0.465 0.465,0.885 0.825,1.245l30.72,30.72c0.75,0.75 1.725,1.125 2.715,1.125c0.99,0 1.965,-0.375 2.715,-1.125c1.5,-1.5 1.5,-3.93 0,-5.43l-24.165,-24.165h82.89c2.13,0 3.84,-1.725 3.84,-3.84z"></path></g></g><path d="M0,192v-192h192v192z" fill="none" stroke="none" stroke-linejoin="miter"></path><g fill="#3498db" stroke="none" stroke-linejoin="miter"><g id="surface1"><path d="M96,7.68c-48.705,0 -88.32,39.615 -88.32,88.32c0,48.705 39.615,88.32 88.32,88.32c48.705,0 88.32,-39.615 88.32,-88.32c0,-48.705 -39.615,-88.32 -88.32,-88.32zM142.08,99.84h-82.89l24.165,24.165c1.5,1.5 1.5,3.93 0,5.43c-0.75,0.75 -1.725,1.125 -2.715,1.125c-0.99,0 -1.965,-0.375 -2.715,-1.125l-30.72,-30.72c-0.36,-0.36 -0.63,-0.78 -0.825,-1.245c-0.39,-0.945 -0.39,-1.995 0,-2.94c0.195,-0.465 0.465,-0.885 0.825,-1.245l30.72,-30.72c1.5,-1.5 3.93,-1.5 5.43,0c1.5,1.5 1.5,3.93 0,5.43l-24.165,24.165h82.89c2.13,0 3.84,1.725 3.84,3.84c0,2.115 -1.71,3.84 -3.84,3.84z"></path></g></g><path d="" fill="none" stroke="none" stroke-linejoin="miter"></path><path d="" fill="none" stroke="none" stroke-linejoin="miter"></path><path d="" fill="none" stroke="none" stroke-linejoin="miter"></path><path d="" fill="none" stroke="none" stroke-linejoin="miter"></path></g></g></svg>
+    </div>
     <!-- <form>
       <div class="input-field">
           <i class="material-icons prefix">public</i> 
@@ -83,10 +89,11 @@
                 cont = latestNews[i].content;
                 urlNews = latestNews[i].url;
                 output += `
-                 <div class="col l6 m6 s12" style="background-color:#76a6f2; background-image:url(${latestNews[i].urlToImage}); 
+                 <div class="col l6 m6 s12 sticky-top" style="background-color:#76a6f2; background-image:url(${latestNews[i].urlToImage}); 
                   background-attachment:scroll; background-size:cover; background-position:cover; 
-                 background-repeat:no-repeat; height:500px;
-                 width:100%; color:white; margin-bottom:5px;" id="thisDiv">
+                 background-repeat:no-repeat; height:750px;
+                 width:100%; color:white; margin-bottom:5px; border-top-style:solid; border-top-width:10px;
+                 border-top-color:black; z-index:90;" id="thisDiv">
                  
                  <div class="col l6 m6 s12" style="width:100%; height:100%; background:rgba(0,0,0,0.3); text-weight:bold;">
                   <div style="background:rgba(255,255,255,0.3); width:100px;">
@@ -108,7 +115,7 @@
                   <div style="width:50%; margin:auto;">
                  <p>${latestNews[i].description}</p>
                  <p>${latestNews[i].content}</p>
-                 <p>Published on: ${latestNews[i].publishedAt}
+                 
                  
                  </div>
                  </div>
