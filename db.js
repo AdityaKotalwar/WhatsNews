@@ -29,7 +29,6 @@ const connect = (cb) =>{
             // Successfully got our database connection
             // Set database connection and call CB
             else{
-                console.log("YAAAS");
                 state.db = client.db(dbname);
                 cb();
             }
