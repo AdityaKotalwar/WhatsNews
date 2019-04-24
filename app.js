@@ -153,7 +153,7 @@ app.post('/signin', function(req, res, next){
     MongoClient.connect(url, { useNewUrlParser: true}, function(err, db) {
         if (err) throw err;
         var dbo = db.db("mydb");
-        localStorage.setItem("emailId",userInput.email);
+        // localStorage.setItem("emailId",userInput.email);
         var document = dbo.collection("users").findOne({email : userInput.email, password : userInput.password}, function(err,resi){
             if(resi){
                 console.log(resi);
@@ -179,7 +179,7 @@ db.connect((err)=>{
     // Start up our Express Application
     // And listen for Request
     else{
-        app.listen(process.env.PORT || 3000,()=>{
+        app.listen(7098,()=>{
             //console.log('connected to database, app listening on port 7900');
         });
     }

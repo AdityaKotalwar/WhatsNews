@@ -15,11 +15,13 @@
 
     <div>
         {{# each items }}
-            <article class="item">
-                <div>Title: {{this.title}}</div>
-                <div>Content: {{this.description}}</div>
+        <div style="width:100%; height:200px; margin-bottom:20px; background:royalblue; color:white;">
+            <article class="item"> 
+                <div style="text-align:center; text-weight:bold;">Title: {{this.title}}</div><br><br><br>
+                <div style="margin:auto; width:50%;">Content: {{this.description}}</div>
                 <div>URL: {{this.url}}</div>
             </article>
+        </div>
         {{/each}}
         </div>
 
