@@ -23,8 +23,11 @@
 						<input type="password" class= "form-control" id="inputPassword" placeholder="Enter password" required>
 					</div>
 					<div class="signin-form">
-					    <button button class="btn btn-success btn-block" onclick="signin()">Submit</button>
-                    </div>
+					    <input type ="button" class="btn btn-success btn-block" onclick="signin()" value="Submit" ></button>
+					</div>
+					<!-- <div class="signin-form">
+					    <input type = "button" class="btn btn-success btn-block" id="signin_button"  >Submit</button>
+                    </div> -->
 					<div class="signin-form">
 						<label for="signup redirect">Don't have an account? Go to <a id="gotosignup" onclick="gotosignup()">signup page</a></label>
 					</div>
@@ -45,44 +48,62 @@
 		location.href = "/signup"
 	}
 
+	// $(document).ready(function(){
+	// 	$('#signin_button').click(function(){
+	// 		console.log("Signin");
+	// 		$.ajax
+    //         	url: '/signin'
+    //         	type: 'POST'
+    //         	data: JSON.stringify({
+	// 				email : $('#inputEmail').val(),
+	// 				password : $('#inputPassword').val()
+	// 			})
+    //         	dataType: 'json'
+    //         	success: (data, textStatus, jqXHR, function(){
+    //             	if (typeof data.redirect == 'string')
+	// 					window.location = data.redirect
+	// 			});
+	// 	});
+	// });
+
+	// $(document).ready(function(){
+	// 	var found = 0;
+	// 	$('#signin_button').click(function(){
+	// 		console.log($('#inputEmail').val())
+	// 		$.post("/signin",{data : $("inputEmail").val()},
+	// 		function(data, status){
+	// 			console.log("Received");
+	// 			window.location.replace("/main");
+	// 			//found = 1;
+	// 			//alert("Data: " + data.redirect + "\nStatus: " + status);
+	// 		})
+	// 		// if(found ==1){
+	// 		// 	console.log("yayayayayyayya")
+	// 		// 	location.href = "/main"
+	// 		// }data : $(form1).serialize()
+	// 	});
+	// });
+
+
+
 	function signin(){
 		var form = document.getElementById("form1");
 		var email = document.getElementById("inputEmail");
 		var password = document.getElementById("inputPassword");
-			
-		// $.ajax({
-		// 	url:"/signin",
-		// 	type: "POST",
-		// 	dataType: "json",
-		// 	data: {
-		// 		email : email.value, 
-		// 		password : password.value
-		// 	},
-        //     contentType: "application/json",
-        //     cache: false,
-        //     timeout: 5000,
-        //     complete: function() {
-        //         //called when complete
-        //         console.log('process complete');
-        //     },
-
-        //     success: function(data) {
-        //         console.log(data);
-        //         console.log('process sucess');
-        //     },
-        //     error: function() {
-        //         console.log('process error');
-        //     }
-		// });
-		
 		fetch('/signin',{
 			method : 'POST',
 			body : JSON.stringify({email : email.value, password : password.value}),
 			headers : {
 				"Content-Type" : "application/json; charset=utf-8"
 			}
+		}).then(function(response){
+			console.log("REsponse is " + response)
+			if(response){
+				location.href = "/main";
+				localStorage.setItem("emailId", email.value);
+              
+			}
 		});
-		// document.getElementById("form1").action = "/main"
 		
 	}
 		

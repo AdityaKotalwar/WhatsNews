@@ -137,22 +137,17 @@ style=" fill:#000000;"><g transform="translate(0.48,0.48) scale(0.995,0.995)"><g
         }
         
         function news(a,b,c) {
-            console.log("Save button pressed");
             var title = a
-            console.log(title+" apple");
             var description = b
-             console.log(description+" hi felicia");
-            // // var description = b;
             var urlN = c;
-               console.log(urlN+"bye felicia");
             var email = localStorage.getItem("emailId");
             console.log(email + "EMAILLL");
             fetch('/flag',{
-					method : 'POST',
-					body : JSON.stringify({title : title, description : description, url : urlN}),
-					headers : {
-						"Content-Type" : "application/json; charset=utf-8"
-					}
+              method : 'POST',
+              body : JSON.stringify({email : email, title : title, description : description, url : urlN}),
+              headers : {
+                "Content-Type" : "application/json; charset=utf-8"
+            }
 						
         });
         alert("Article Saved");
