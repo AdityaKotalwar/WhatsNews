@@ -185,13 +185,8 @@ db.connect((err)=>{
     // Start up our Express Application
     // And listen for Request
     else{
-<<<<<<< HEAD
         app.listen(process.env.PORT || 3000,()=>{
             console.log('connected to database, app listening on port 3000');
-=======
-        app.listen(7100,()=>{
-            console.log('connected to database, app listening on port 7100');
->>>>>>> 088ed4ca4959051039ef69a20a594c672f76e874
         });
     }
 });
