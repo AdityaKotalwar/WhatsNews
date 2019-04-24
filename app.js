@@ -134,10 +134,6 @@ app.post('/signin', function(req, res, next){
     MongoClient.connect(url, { useNewUrlParser: true}, function(err, db) {
         if (err) throw err;
         var dbo = db.db("mydb");
-<<<<<<< HEAD
-        // localStorage.setItem("emailId",userInput.email);
-=======
->>>>>>> 0e6b64ed277f6a37c2566af2069f539eece6b99c
         var document = dbo.collection("users").findOne({email : userInput.email, password : userInput.password}, function(err,resi){
             if(resi){
                 console.log(resi);
@@ -189,13 +185,8 @@ db.connect((err)=>{
     // Start up our Express Application
     // And listen for Request
     else{
-<<<<<<< HEAD
         app.listen(process.env.PORT || 7100,()=>{
             console.log('connected to database, app listening on port 7100');
-=======
-        app.listen(process.env.PORT || 3000,()=>{
-            console.log('connected to database, app listening on port 3000');
->>>>>>> 0e6b64ed277f6a37c2566af2069f539eece6b99c
         });
     }
 });

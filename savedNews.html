@@ -11,16 +11,20 @@
     <title>List</title>
   </head>
   <body>
-    <h5>Suck my ass!</h5>
-
     <div>
         {{# each items }}
-        <div style="width:100%; height:200px; margin-bottom:20px; background:royalblue; color:white;">
+        <div style="width:75%; height:200px; margin:auto; margin-bottom:20px; box-shadow: 5px 10px 5px #d4d6d8; 
+        background:#109df7; color:white; text-weight:bold;">
             <article class="item"> 
-                <div style="text-align:center; text-weight:bold;">Title: {{this.title}}</div><br><br><br>
-                <div style="margin:auto; width:50%;">Content: {{this.description}}</div>
-                <div>URL: {{this.url}}</div>
+                <a href = {{this.url}} id = "link2" style="color:white;">
+                <div style="text-align:center; text-weight:bold; padding-top:1%;"><h5>{{this.title}}</h5></div></a><br><br>
+                <div style="margin:auto; width:50%;">{{this.description}}</div>
+                
+                
             </article>
+            <script>
+                
+            </script>
         </div>
         {{/each}}
         </div>
