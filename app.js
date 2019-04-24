@@ -10,6 +10,7 @@ const app = express();
 
 var MongoClient = require('mongodb').MongoClient;
 var engines = require('consolidate');
+var emailUnique = "";
 
 app.set('views', __dirname);
 app.engine('html', require('hbs').__express);
@@ -34,10 +35,11 @@ app.get('/savedNews', function(req, res, next){
     console.log("GETergergerge");
     // res.render('savedNews')
     var resultArray = [];
-  MongoClient.connect(url, function(err, db){
+    MongoClient.connect(url, function(err, db){
+    console.log("EMAILSSSS" + emailUnique);
     assert.equal(null, err);
     var dbo = db.db("mydb");
-    var cursor = dbo.collection('news').find();
+    var cursor = dbo.collection('news').find({email : emailUnique});
     cursor.forEach(function(doc, err){
       assert.equal(null, err);
       console.log(doc)
@@ -89,6 +91,7 @@ app.get('/flag', (req, res)=>{
 app.get('/signup', (req, res)=>{
     console.log("GETsignup");
     res.sendFile(path.join(__dirname,'signup.html'));
+
 });
 
 app.get('/main', function(req, res){
@@ -98,30 +101,7 @@ app.get('/main', function(req, res){
     //res.sendFile(path.join(__dirname,'main.html'));
 });
 
-app.post('/signup', function(req,res, next){
-    // Document to be inserted
 
-    const userInput = req.body;
-    
-    MongoClient.connect(url, { useNewUrlParser: true}, function(err, db) {
-        if (err) throw err;
-        var dbo = db.db("mydb");
-
-        var document = dbo.collection("users").findOne({email : userInput.email}, function(err,resi){
-            console.log(resi);
-            if(!resi){
-                dbo.collection("users").insertOne(userInput, function(err, res1) {
-                    if (err) throw err;
-                    console.log("1 document inserted");
-                    //return res.sendFile(path.join(__dirname,'/main'));
-                    res.redirect('localhost:7098/main');
-                    db.close();
-                });
-            }
-        });
-        
-      });
-});
 
 app.get('/signin', function(req, res, next){
     console.log("GETsignin")
@@ -150,23 +130,53 @@ app.post('/signin', function(req, res, next){
     // Document to be inserted
     console.log("POSTsignin");
     const userInput = req.body;
+    console.log(req.body);
     MongoClient.connect(url, { useNewUrlParser: true}, function(err, db) {
         if (err) throw err;
         var dbo = db.db("mydb");
+<<<<<<< HEAD
         // localStorage.setItem("emailId",userInput.email);
+=======
+>>>>>>> 0e6b64ed277f6a37c2566af2069f539eece6b99c
         var document = dbo.collection("users").findOne({email : userInput.email, password : userInput.password}, function(err,resi){
             if(resi){
                 console.log(resi);
-                return res.redirect('/main');
-                // return res.sendFile(path.join(__dirname,'/main'));
-                //    return res.redirect('/main'); 
+                emailUnique = userInput.email;
+                res.send({redirect : '/main' });
+            }
+            else{
+                console.log('wrong password');
             }
             
         });
     });
     
 });
+   
+app.post('/signup', function(req,res, next){
+    // Document to be inserted
+
+    const userInput = req.body;
+    
+    MongoClient.connect(url, { useNewUrlParser: true}, function(err, db) {
+        if (err) throw err;
+        var dbo = db.db("mydb");
+
+        var document = dbo.collection("users").findOne({email : userInput.email}, function(err,resi){
+            console.log(resi);
+            if(!resi){
+                dbo.collection("users").insertOne(userInput, function(err, res1) {
+                    if (err) throw err;
+                    console.log("1 document inserted");
+                    //return res.sendFile(path.join(__dirname,'/main'));
+                    emailUnique = userInput.email;
+                    res.send({redirect : '/main' });
+                });
+            }
+        });
         
+      });
+});
 
 db.connect((err)=>{
     // If err unable to connect to database
@@ -179,8 +189,13 @@ db.connect((err)=>{
     // Start up our Express Application
     // And listen for Request
     else{
+<<<<<<< HEAD
         app.listen(process.env.PORT || 7100,()=>{
             console.log('connected to database, app listening on port 7100');
+=======
+        app.listen(process.env.PORT || 3000,()=>{
+            console.log('connected to database, app listening on port 3000');
+>>>>>>> 0e6b64ed277f6a37c2566af2069f539eece6b99c
         });
     }
 });
