@@ -126,15 +126,14 @@
             // // var description = b;
             var urlN = c;
                console.log(urlN+"bye felicia");
-         //   var email = localStorage.getItem("emailID");
-         //   console.log(email + "EMAILLL");
+            var email = localStorage.getItem("emailId");
+            console.log(email + "EMAILLL");
             fetch('/flag',{
 					method : 'POST',
 					body : JSON.stringify({title : title, description : description, url : urlN}),
 					headers : {
 						"Content-Type" : "application/json; charset=utf-8"
 					}
-						
 				});
         }
    //});

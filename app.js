@@ -1,15 +1,22 @@
 const express = require('express');
 const bodyParser = require("body-parser");
 const path = require('path');
+const assert = require('assert')
 
 const db = require("./db");
 const collection = "user";
 const app = express();
+//var hbs = require('express-handlebars');
 
 var MongoClient = require('mongodb').MongoClient;
+var engines = require('consolidate');
+
+app.set('views', __dirname);
+app.engine('html', require('hbs').__express);
+app.set('view engine', 'html');
 var url = "mongodb+srv://whatsnews:alishamc@cluster0-ndzcp.mongodb.net/test?retryWrites=true";
 
-//app.use(express.static(__dirname + '/static'));
+
 app.use(express.static(path.join('css', 'public')));
 app.use(bodyParser.json());
 
@@ -22,9 +29,33 @@ app.get('/main', (req, res)=>{
     console.log("GETergergerge");
     res.sendFile(path.join(__dirname,'main.html'));
 })
+
+app.get('/savedNews', function(req, res, next){
+    console.log("GETergergerge");
+    // res.render('savedNews')
+    var resultArray = [];
+  MongoClient.connect(url, function(err, db){
+    assert.equal(null, err);
+    var dbo = db.db("mydb");
+    var cursor = dbo.collection('news').find();
+    cursor.forEach(function(doc, err){
+      assert.equal(null, err);
+      console.log(doc)
+      resultArray.push(doc);
+    }, function(){
+      db.close();
+      console.log(resultArray)
+      res.render('savedNews', {items: resultArray});
+    });
+
+})
+})
+
 app.get('/flag', (req, res)=>{
     console.log("FLAG");
-    res.sendFile(path.join(__dirname,'flag.html'));
+    // res.sendFile(path.join(__dirname,'flag.html'));
+    res.render("flag")
+    
 })
 
 // app.get('/auth',(req,res)=>{
@@ -42,6 +73,18 @@ app.get('/flag', (req, res)=>{
 //     console.log("GET");
 //     res.sendFile(path.join(__dirname,'signup.html'));
     
+// });
+// app.get('/showNews', (req, res)=>{
+//     MongoClient.connect(url, function(err, db) {
+//         if (err) throw err;
+//         var dbo = db.db("mydb");
+//         dbo.collection("news").find({}).toArray(function(err, result) {
+//           if (err) throw err;
+//           console.log(result);
+//           console.log("News articles printed");
+//           db.close();
+//         });
+//       });
 // });
 
 app.post('/signup', function(req,res, next){
@@ -93,7 +136,7 @@ app.post('/signin', function(req, res, next){
     MongoClient.connect(url, { useNewUrlParser: true}, function(err, db) {
         if (err) throw err;
         var dbo = db.db("mydb");
-     //   localStorage.setItem("emailId",userInput.email);
+        localStorage.setItem("emailId",userInput.email);
         var document = dbo.collection("users").findOne({email : userInput.email, password : userInput.password}, function(err,resi){
             if(resi){
                 console.log(resi);
@@ -122,10 +165,8 @@ db.connect((err)=>{
     // Start up our Express Application
     // And listen for Request
     else{
-        app.listen(7800,()=>{
-            console.log('connected to database, app listening on port 7800');
+        app.listen(7900,()=>{
+            console.log('connected to database, app listening on port 7900');
         });
     }
 });
-
-

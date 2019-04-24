@@ -33,7 +33,7 @@
       </div>
     
       <div class="col-auto">
-        <button type="button" class="btn" style="background-color:transparent; color:white;">Saved Articles</button>
+        <button type="button" onclick="showNews()" class="btn" style="background-color:transparent; color:white;">Saved Articles</button>
 
       </div>
       <div class="col-auto">
@@ -57,6 +57,9 @@
       
         <!-- <script src = "countries.js">
           </script> -->
+          <div style="float:right; width:60%; margin-right:1%;" class="savedArticles">
+            
+          </div>
 
           <script>
           
@@ -97,7 +100,7 @@ var country_arr = new Array("Afghanistan", "Albania", "Algeria", "American Samoa
     document.write("<div style=\"padding-bottom:25px;\" class=\"lippy\">");
       var country = country_arr[i].toLowerCase();
       //localStorage.setItem(country, country);
-      var link = "<a href=\"http://localhost:7800/flag\"" + "id=\"" + country +"\" class=\"countryName\">";
+      var link = "<a href=\"http://localhost:7900/flag\"" + "id=\"" + country +"\" class=\"countryName\">";
     //document.write("<a href=\"http://localhost:3090/flag\"");
     //document.write(" class=\"");
     //document.write(country);
@@ -137,7 +140,7 @@ var country_arr = new Array("Afghanistan", "Albania", "Algeria", "American Samoa
           test=function(e){
               localStorage.setItem("country", $(this).attr('id'));
               //alert(localStorage.getItem("country"));
-              window.open("http://localhost:7800/flag", "_self");
+              window.open("http://localhost:7900/flag", "_self");
               return false;
 
           }
@@ -172,6 +175,11 @@ a:hover{
     cursor: pointer;
 }
 
+.lippy{
+
+  width:30%;
+}
+
 ul.listy{
     
     /* display: flex; */
@@ -194,6 +202,12 @@ a:link{
 </style>
 
 <script>
+
+  function showNews(){
+    window.open("http://localhost:7900/savedNews", "_self");
+    return false;
+    
+  }
 
 function func(){
 
