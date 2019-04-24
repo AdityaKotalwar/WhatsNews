@@ -106,7 +106,9 @@
 			if(response){
 				location.href = "/main";
 				localStorage.setItem("emailId", email.value);
-              
+			}
+			else{
+				alert("Incorrect credentials!!");
 			}
 		});
 		

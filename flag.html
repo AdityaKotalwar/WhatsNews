@@ -12,7 +12,7 @@
   </head>
   <body>
 
-    <div style="position:fixed; z-index:100; width:50px; left:95%; padding-top:1%;">
+    <div style="position:fixed; z-index:100; width:50px; left:95%; padding-top:1%;" onclick = "main_redirect()">
         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
 width="50" height="50"
 viewBox="0 0 192 192"
@@ -151,6 +151,10 @@ style=" fill:#000000;"><g transform="translate(0.48,0.48) scale(0.995,0.995)"><g
 						
         });
         alert("Article Saved");
+        }
+
+        function main_redirect(){
+          location.href ='/main';
         }
    //});
 //});
