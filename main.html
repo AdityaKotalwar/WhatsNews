@@ -102,7 +102,11 @@ var country_arr = new Array("Afghanistan", "Albania", "Algeria", "American Samoa
     document.write("<div style=\"padding-bottom:25px;\" class=\"lippy\">");
       var country = country_arr[i].toLowerCase();
       //localStorage.setItem(country, country);
+<<<<<<< HEAD
       var link = "<a href=\"http://localhost:3000/flag\"" + "id=\"" + country +"\" class=\"countryName\">";
+=======
+      var link = "<a href=\"flag.html\"" + "id=\"" + country +"\" class=\"countryName\">";
+>>>>>>> 088ed4ca4959051039ef69a20a594c672f76e874
     //document.write("<a href=\"http://localhost:3090/flag\"");
     //document.write(" class=\"");
     //document.write(country);
@@ -142,7 +146,12 @@ var country_arr = new Array("Afghanistan", "Albania", "Algeria", "American Samoa
           test=function(e){
               localStorage.setItem("country", $(this).attr('id'));
               //alert(localStorage.getItem("country"));
+<<<<<<< HEAD
               window.open("http://localhost:3000/flag", "_self");
+=======
+             // window.open("http://localhost:7100/flag", "_self");
+             location.href = "/flag";
+>>>>>>> 088ed4ca4959051039ef69a20a594c672f76e874
               return false;
 
           }
@@ -199,7 +208,8 @@ ul.listy li {
 <script>
 
   function showNews(){
-    window.open("http://localhost:7098/savedNews", "_self");
+   // window.open("http://localhost:7100/savedNews", "_self");
+   location.href = "/savedNews";
     return false;
     
   }
